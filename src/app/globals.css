@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   DESIGN TOKENS — satu-satunya tempat yang perlu diubah
+   saat desain dari tim desain sudah final.
+   Warna ditulis sebagai "R G B" supaya bisa dipakai dengan alpha.
+   ============================================================ */
+:root {
+  --c-bg: 250 249 246;
+  --c-surface: 241 239 233;
+  --c-ink: 28 28 26;
+  --c-muted: 112 110 104;
+  --c-line: 222 219 211;
+  --c-accent: 140 62 40;
+
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --page-max: 72rem;
+  --gutter: 1.25rem;
+}
+
+html {
+  background: rgb(var(--c-bg));
+  color: rgb(var(--c-ink));
+  font-family: var(--font-body);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* Utilitas layout yang dipakai ulang di semua halaman */
+@layer components {
+  .page {
+    @apply mx-auto w-full max-w-page;
+    padding-inline: var(--gutter);
+  }
+  .eyebrow {
+    @apply text-xs uppercase tracking-[0.18em] text-muted;
+  }
+  .h-display {
+    @apply font-display font-normal tracking-tight;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center border border-ink px-5 py-3 text-sm tracking-wide transition-colors;
+  }
+  .btn-solid {
+    @apply btn bg-ink text-bg hover:bg-accent hover:border-accent;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent text-ink hover:bg-ink hover:text-bg;
+  }
+  .field {
+    @apply w-full border border-line bg-surface px-3 py-3 text-base outline-none focus:border-ink;
+  }
+}
