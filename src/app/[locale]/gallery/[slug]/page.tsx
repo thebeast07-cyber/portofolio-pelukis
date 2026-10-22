@@ -7,7 +7,8 @@ import { notFound } from "next/navigation";
 import ArtistBlock from "@/components/ArtistBlock";
 import ArtworkMedia from "@/components/ArtworkMedia";
 import InquiryForm from "@/components/InquiryForm";
-import { formatCm, formatInch, getOrderedImages } from "@/lib/art";
+import ViewInRoom from "@/components/ViewInRoom";
+import { formatCm, formatInch, getOrderedImages, getPrimaryImage } from "@/lib/art";
 import { getArtist, getArtwork, getArtworks, getSeriesBySlug } from "@/lib/data";
 import { href, loc, paragraphs, t } from "@/lib/i18n";
 import type { Locale } from "@/lib/types";
@@ -55,6 +56,18 @@ export default function ArtworkPage({ params }: { params: Params }) {
             ratio={artwork.dimensions.width / artwork.dimensions.height}
             locale={locale}
             watermark={artist.name}
+            extraSlide={{
+              label: dict.room.title,
+              thumb: dict.room.open,
+              content: (
+                <ViewInRoom
+                  image={getPrimaryImage(artwork)}
+                  widthCm={artwork.dimensions.width}
+                  heightCm={artwork.dimensions.height}
+                  locale={locale}
+                />
+              ),
+            }}
           />
         </div>
 

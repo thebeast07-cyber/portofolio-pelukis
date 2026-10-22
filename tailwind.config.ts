@@ -23,6 +23,9 @@ const config: Config = {
       maxWidth: {
         page: "var(--page-max)",
       },
+      boxShadow: {
+        art: "var(--shadow-art)",
+      },
     },
   },
   plugins: [],

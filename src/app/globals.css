@@ -18,6 +18,9 @@
   --font-display: Georgia, "Times New Roman", serif;
   --font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 
+  /* Bayangan halus lukisan di View in Room, supaya tidak terlihat seperti tempelan. */
+  --shadow-art: 0 2px 4px rgb(var(--c-ink) / 0.18), 0 10px 24px rgb(var(--c-ink) / 0.14);
+
   --page-max: 72rem;
   --gutter: 1.25rem;
 }
