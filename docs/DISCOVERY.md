@@ -89,3 +89,27 @@ Supaya metrik PRD bisa diukur tanpa bongkar ulang komponen:
 | page view `/about` | Kunjungan About (>35%) |
 
 Tool: Plausible atau Vercel Analytics, tanpa cookie, tanpa banner.
+
+## 6. Keputusan yang sudah dikunci (22 Okt 2026)
+
+Disetujui klien: **semua usulan di bagian 3**. Ringkasnya:
+
+| # | Keputusan | Di kode |
+|---|---|---|
+| K1 | Commission pakai form yang sama + penanda `type: "commission"`, tanpa field tambahan | `src/components/InquiryForm.tsx`, `src/lib/inquiry.ts` |
+| K2 | Seri = pengelompokan; filter = tahun, medium, ukuran (kecil < 60 cm, sedang 60–120 cm, besar > 120 cm, sisi terpanjang) | `src/components/GalleryBrowser.tsx`, `src/lib/art.ts` |
+| K3 | Cara kirim (`shippingNote`) **ditampilkan** di halaman detail | `src/app/[locale]/gallery/[slug]/page.tsx` |
+| K4 | Zoom sederhana dulu, diganti zoom tile saat gambar CMS masuk | `src/components/ArtworkMedia.tsx` |
+| K6 | Notifikasi email saja; WhatsApp sebagai link `wa.me` di Contact | `src/app/[locale]/contact/page.tsx` |
+| S1 | `role` jadi sumber kebenaran peran gambar | `src/lib/types.ts`, `src/lib/art.ts` |
+| S5 | `Artist` ditambah `signature`, `awards`, `commission` | `src/lib/types.ts` |
+| S6 | Hero Home = karya featured terbaru | `src/lib/data.ts` |
+| S7 | Karya `exhibited` memakai tombol Inquire | detail page |
+
+Tambahan dari klien: **situs harus mengenalkan pelukisnya secara personal**, bukan cuma galeri karya.
+Diterapkan tanpa melanggar urutan PRD (karya tetap membuka, potret tidak di paling atas):
+
+- Home: hero karya → nama + kalimat pertama statement → blok "Meet the artist" (potret + bio pendek) → strip foto studio → seri → ajakan bertanya.
+- Setiap halaman karya ditutup kartu "About the artist" yang menautkan ke About.
+- About ditulis dengan suara orang pertama (statement) dan memuat proses studio, pameran, dan kebijakan commission.
+- Teks ajakan memakai suara seniman ("I reply personally within 24 hours"), bukan suara toko.

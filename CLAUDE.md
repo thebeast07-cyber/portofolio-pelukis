@@ -28,16 +28,20 @@ Next.js 14 (App Router) + TypeScript + Tailwind 3. CMS target: Sanity (belum dip
 
 ## Sudah ada
 - Setup Next.js + Tailwind, design tokens (`globals.css`, `tailwind.config.ts`).
-- `src/lib/types.ts`: schema `Artwork`, `Series`, `Artist` sesuai PRD.
+- `src/lib/types.ts` (schema), `data.ts` (dummy, buang `internalPrice`), `i18n.ts` (teks UI EN/ID), `art.ts` (turunan dimensi), `inquiry.ts` (validasi), `rooms.ts` (kalibrasi View in Room).
+- `src/components/ArtImage.tsx` (placeholder SVG dari seed).
+- Routing `src/app/[locale]/` + `src/middleware.ts` (redirect ke `/en`).
+- Halaman Home, Gallery, Detail karya, About, Contact.
+- Form inquiry/commission + `src/app/api/inquiry/route.ts` (validasi saja, belum kirim email).
+- View in Room (4 preset SVG, slide terakhir galeri foto).
+- Keputusan di luar PRD tercatat di `docs/DISCOVERY.md` bagian 6. Baca sebelum mengubah perilaku.
 
 ## Belum ada (urutan kerja)
-1. `src/lib/data.ts` (3-6 karya dummy, 1-2 seri, 1 artist) dan `src/lib/i18n.ts`.
-2. `src/components/ArtImage.tsx` (placeholder SVG berdasarkan seed dan rasio dimensi).
-3. Routing `src/app/[locale]/` + middleware redirect `/` ke `/en`.
-4. Halaman: Home (satu karya besar dulu, baru nama), Gallery (per seri, filter tahun/medium), Detail karya, About, Contact.
-5. Form inquiry + `src/app/api/inquiry/route.ts` (validasi dulu, kirim email nanti).
-6. View in Room (SVG, 4 preset: living room, bedroom, office, plain wall dengan siluet 170cm).
-7. Lalu: SEO (structured data, OG image, sitemap), toggle bahasa, halaman Terms, analytics tanpa cookie.
+1. Kirim email inquiry (Resend/Formspree) ke alamat seniman.
+2. SEO: structured data `VisualArtwork` + `Person`, OG image per karya, sitemap, `hreflang`.
+3. Halaman Terms, analytics tanpa cookie (event: `artwork_view`, `zoom_open`, `view_in_room_open`, `inquiry_submit`).
+4. Pasang Sanity + `/studio` (noindex), ganti `data.ts` dengan query bentuk sama.
+5. Zoom berbasis tile untuk gambar asli.
 
 **Gerbang rilis**: situs siap rilis kalau orang bisa paham siapa senimannya, menelusuri karya, dan kirim inquiry tanpa bantuan (tahap 1-4 PRD).
 
