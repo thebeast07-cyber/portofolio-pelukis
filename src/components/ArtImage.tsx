@@ -196,7 +196,7 @@ function Placeholder({ kind, seed, w, h }: { kind: ImageKind; seed: number; w: n
       return (
         <g>
           <Painting seed={seed} w={w} h={h} density={2} />
-          <path d={`M${pts.join(" Q")}`} fill="none" stroke={p.deep} strokeWidth={10} strokeLinecap="round" />
+          <path d={`M${pts.join(" T")}`} fill="none" stroke={p.deep} strokeWidth={10} strokeLinecap="round" />
           <path d={`M${f(w * 0.68)},${f(y + h * 0.12)} L${f(w * 0.82)},${f(y + h * 0.1)}`} stroke={p.deep} strokeWidth={8} strokeLinecap="round" />
         </g>
       );
