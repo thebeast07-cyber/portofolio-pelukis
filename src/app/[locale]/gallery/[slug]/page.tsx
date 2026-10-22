@@ -6,6 +6,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import ArtistBlock from "@/components/ArtistBlock";
 import ArtworkMedia from "@/components/ArtworkMedia";
+import InquiryForm from "@/components/InquiryForm";
 import { formatCm, formatInch, getOrderedImages } from "@/lib/art";
 import { getArtist, getArtwork, getArtworks, getSeriesBySlug } from "@/lib/data";
 import { href, loc, paragraphs, t } from "@/lib/i18n";
@@ -124,7 +125,11 @@ export default function ArtworkPage({ params }: { params: Params }) {
 
           <section id="inquire" className="mt-10 scroll-mt-6 border-t border-line pt-6">
             <h2 className="h-display text-2xl">{isPrivate ? dict.artwork.requestSimilar : dict.artwork.inquire}</h2>
-            {/* Form inquiry dipasang di langkah 5. */}
+            <InquiryForm
+              locale={locale}
+              type={isPrivate ? "commission" : "inquiry"}
+              artwork={{ slug: artwork.slug, title: `${title}, ${artwork.year}` }}
+            />
           </section>
 
           <div className="mt-10">

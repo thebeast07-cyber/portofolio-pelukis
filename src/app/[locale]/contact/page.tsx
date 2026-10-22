@@ -1,6 +1,7 @@
 // Contact: pertanyaan umum + pesanan lukisan (commission), plus jalur langsung email/WhatsApp.
 
 import type { Metadata } from "next";
+import InquiryForm from "@/components/InquiryForm";
 import { getArtist } from "@/lib/data";
 import { t } from "@/lib/i18n";
 import type { Locale } from "@/lib/types";
@@ -23,14 +24,14 @@ export default function ContactPage({ params }: { params: { locale: Locale } }) 
 
       <section id="inquiry" className="mt-12 scroll-mt-6 border-t border-line pt-6">
         <h2 className="h-display text-2xl">{dict.contact.general}</h2>
-        {/* Form dipasang di langkah 5. */}
+        <InquiryForm locale={locale} type="inquiry" />
       </section>
 
       {artist.commission.accepting ? (
         <section id="commission" className="mt-12 scroll-mt-6 border-t border-line pt-6">
           <h2 className="h-display text-2xl">{dict.contact.commission}</h2>
           <p className="mt-2 text-sm text-muted">{dict.contact.commissionIntro}</p>
-          {/* Form dipasang di langkah 5. */}
+          <InquiryForm locale={locale} type="commission" />
         </section>
       ) : null}
 
