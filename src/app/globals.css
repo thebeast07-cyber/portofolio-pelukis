@@ -8,15 +8,19 @@
    Warna ditulis sebagai "R G B" supaya bisa dipakai dengan alpha.
    ============================================================ */
 :root {
-  --c-bg: 250 249 246;
-  --c-surface: 241 239 233;
-  --c-ink: 28 28 26;
-  --c-muted: 112 110 104;
-  --c-line: 222 219 211;
-  --c-accent: 140 62 40;
+  /* Desain mobile "sutongeli" (Mobile Portfolio UI): putih bersih, aksen burgundy. */
+  --c-bg: 255 255 255;
+  --c-surface: 247 245 243;
+  --c-ink: 17 17 17;
+  --c-muted: 85 85 85;
+  --c-line: 230 224 221;
+  --c-accent: 122 20 38;
 
-  --font-display: Georgia, "Times New Roman", serif;
-  --font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius-card: 14px;
+  --nav-bottom-h: 72px;
 
   /* Bayangan halus lukisan di View in Room, supaya tidak terlihat seperti tempelan. */
   --shadow-art: 0 2px 4px rgb(var(--c-ink) / 0.18), 0 10px 24px rgb(var(--c-ink) / 0.14);
@@ -55,7 +59,16 @@ main {
     @apply font-display font-normal tracking-tight;
   }
   .btn {
-    @apply inline-flex items-center justify-center border border-ink px-5 py-3 text-sm tracking-wide transition-colors;
+    @apply inline-flex items-center justify-center rounded-full border border-ink px-5 py-3 text-sm font-semibold tracking-wide transition-colors;
+  }
+  .chip {
+    @apply inline-flex h-9 shrink-0 items-center rounded-full border border-line bg-bg px-4 text-[13px] font-medium text-ink transition-colors;
+  }
+  .chip[aria-pressed="true"] {
+    @apply border-ink bg-ink text-bg;
+  }
+  .badge {
+    @apply inline-flex shrink-0 items-center rounded-full bg-accent px-3 py-1.5 text-xs font-semibold text-bg;
   }
   .btn-solid {
     @apply btn bg-ink text-bg hover:bg-accent hover:border-accent;
