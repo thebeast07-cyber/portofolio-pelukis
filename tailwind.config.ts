@@ -20,6 +20,9 @@ const config: Config = {
         display: "var(--font-display)",
         body: "var(--font-body)",
       },
+      borderRadius: {
+        card: "var(--radius-card)",
+      },
       maxWidth: {
         page: "var(--page-max)",
       },

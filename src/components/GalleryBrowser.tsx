@@ -51,8 +51,26 @@ export default function GalleryBrowser({ artworks, series, locale }: Props) {
 
   return (
     <>
-      <fieldset className="mt-8 grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:items-end sm:gap-4">
+      <fieldset className="mt-8 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:items-end sm:gap-4">
         <legend className="sr-only">{dict.gallery.filters}</legend>
+        {/* Medium sebagai chip (desain mobile), bisa digeser ke samping */}
+        <div
+          role="group"
+          aria-label={dict.gallery.medium}
+          className="col-span-2 -mx-[var(--gutter)] flex gap-2 overflow-x-auto px-[var(--gutter)] pb-1 sm:order-last sm:mx-0 sm:w-full sm:flex-wrap sm:overflow-visible sm:px-0"
+        >
+          {[ALL, ...mediums].map((m) => (
+            <button
+              key={m}
+              type="button"
+              className="chip"
+              aria-pressed={medium === m}
+              onClick={() => setMedium(m)}
+            >
+              {m === ALL ? dict.gallery.all : m}
+            </button>
+          ))}
+        </div>
         <label className="text-xs text-muted">
           {dict.gallery.year}
           <select className={select} value={year} onChange={(e) => setYear(e.target.value)}>
@@ -60,17 +78,6 @@ export default function GalleryBrowser({ artworks, series, locale }: Props) {
             {years.map((y) => (
               <option key={y} value={y}>
                 {y}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label className="text-xs text-muted">
-          {dict.gallery.medium}
-          <select className={select} value={medium} onChange={(e) => setMedium(e.target.value)}>
-            <option value={ALL}>{dict.gallery.all}</option>
-            {mediums.map((m) => (
-              <option key={m} value={m}>
-                {m}
               </option>
             ))}
           </select>
@@ -89,7 +96,7 @@ export default function GalleryBrowser({ artworks, series, locale }: Props) {
         {isFiltered ? (
           <button
             type="button"
-            className="col-span-3 justify-self-start text-sm underline underline-offset-4 hover:text-accent sm:pb-3"
+            className="col-span-2 justify-self-start text-sm underline underline-offset-4 hover:text-accent sm:pb-3"
             onClick={() => {
               setYear(ALL);
               setMedium(ALL);

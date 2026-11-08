@@ -77,25 +77,36 @@ export default function ArtworkPage({ params }: { params: Params }) {
               {loc(series.title, locale)}
             </Link>
           ) : null}
-          <h1 className="h-display mt-2 text-3xl sm:text-4xl">{title}</h1>
+          <div className="mt-2 flex items-start justify-between gap-3">
+            <h1 className="h-display text-[28px] font-semibold leading-tight sm:text-4xl">{title}</h1>
+            <span className="badge mt-1">{dict.status[artwork.status]}</span>
+          </div>
+          <p className="mt-1.5 text-sm text-muted">
+            {artist.name} · {artwork.year}
+          </p>
 
-          <dl className="mt-6 grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-sm">
-            <dt className="text-muted">{dict.artwork.year}</dt>
-            <dd>{artwork.year}</dd>
-            <dt className="text-muted">{dict.artwork.medium}</dt>
-            <dd>{artwork.medium}</dd>
-            <dt className="text-muted">{dict.artwork.dimensions}</dt>
-            <dd>
-              {formatCm(artwork.dimensions)}
-              <br />
-              <span className="text-muted">{formatInch(artwork.dimensions)}</span>
-            </dd>
-            <dt className="text-muted">{dict.artwork.status}</dt>
-            <dd>{dict.status[artwork.status]}</dd>
+          {/* Spesifikasi: baris bergaris seperti desain mobile. Tidak ada baris harga (aturan #1). */}
+          <dl className="mt-5 border-t border-line text-sm">
+            <div className="flex justify-between gap-6 border-b border-line py-3">
+              <dt className="text-muted">{dict.artwork.medium}</dt>
+              <dd className="text-right font-medium">{artwork.medium}</dd>
+            </div>
+            <div className="flex justify-between gap-6 border-b border-line py-3">
+              <dt className="text-muted">{dict.artwork.dimensions}</dt>
+              <dd className="text-right font-medium">
+                {formatCm(artwork.dimensions)}
+                <br />
+                <span className="font-normal text-muted">{formatInch(artwork.dimensions)}</span>
+              </dd>
+            </div>
+            <div className="flex justify-between gap-6 border-b border-line py-3">
+              <dt className="text-muted">{dict.artwork.year}</dt>
+              <dd className="text-right font-medium">{artwork.year}</dd>
+            </div>
           </dl>
 
           {isPrivate ? <p className="mt-6 text-sm">{dict.artwork.privateNote}</p> : null}
-          <a href="#inquire" className="btn-solid mt-6 w-full sm:w-auto">
+          <a href="#inquire" className="btn-solid mt-5 h-[52px] w-full text-[15px] sm:w-auto">
             {isPrivate ? dict.artwork.requestSimilar : dict.artwork.inquire}
           </a>
 

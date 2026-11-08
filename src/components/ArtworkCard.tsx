@@ -11,13 +11,13 @@ export default function ArtworkCard({ artwork, locale }: { artwork: PublicArtwor
 
   return (
     <Link href={href(locale, `/gallery/${artwork.slug}`)} className="group block">
-      <div className="bg-surface">
+      <div className="overflow-hidden rounded-card bg-surface">
         <ArtImage image={getPrimaryImage(artwork)} locale={locale} ratio={width / height} />
       </div>
-      <div className="mt-3 text-sm">
-        <p className="font-display text-base group-hover:text-accent">{loc(artwork.title, locale)}</p>
-        <p className="text-muted">
-          {artwork.year} · {dict.status[artwork.status]}
+      <div className="mt-2">
+        <p className="text-[13px] font-semibold group-hover:text-accent">{loc(artwork.title, locale)}</p>
+        <p className="text-xs text-muted">
+          {artwork.medium} · {artwork.year} · {dict.status[artwork.status]}
         </p>
       </div>
     </Link>
